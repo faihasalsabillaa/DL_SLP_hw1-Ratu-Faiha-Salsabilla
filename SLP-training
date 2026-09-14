@@ -1,0 +1,212 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#training data
+X = np.array([
+    [5.1, 3.5, 1.4, 0.2],
+    [4.9, 3.0, 1.4, 0.2],
+    [4.7, 3.2, 1.3, 0.2],
+    [4.6, 3.1, 1.5, 0.2],
+    [5.0, 3.6, 1.4, 0.2],
+    [5.4, 3.9, 1.7, 0.2],
+    [4.6, 3.4, 1.4, 0.2],
+    [5.0, 3.4, 1.5, 0.2],
+    [4.4, 2.9, 1.4, 0.2],
+    [4.9, 3.1, 1.5, 0.2],
+    [5.4, 3.7, 1.5, 0.2],
+    [4.8, 3.4, 1.6, 0.2],
+    [4.8, 3.0, 1.4, 0.2],
+    [4.3, 3.0, 1.1, 0.2],
+    [5.8, 4.0, 1.2, 0.2],
+    [5.7, 4.4, 1.5, 0.2],
+    [5.4, 3.9, 1.3, 0.2],
+    [5.1, 3.5, 1.4, 0.2],
+    [5.7, 3.8, 1.7, 0.2],
+    [5.1, 3.8, 1.5, 0.2],
+    [5.4, 3.4, 1.7, 0.2],
+    [5.1, 3.7, 1.5, 0.2],
+    [4.6, 3.6, 1.0, 0.2],
+    [5.1, 3.3, 1.7, 0.2],
+    [4.8, 3.4, 1.9, 0.2],
+    [5.0, 3.0, 1.6, 0.2],
+    [5.0, 3.4, 1.6, 0.2],
+    [5.2, 3.5, 1.5, 0.2],
+    [5.2, 3.4, 1.4, 0.2],
+    [4.7, 3.2, 1.6, 0.2],
+    [4.8, 3.1, 1.6, 0.2],
+    [5.4, 3.4, 1.5, 0.2],
+    [5.2, 4.1, 1.5, 0.2],
+    [5.5, 4.2, 1.4, 0.2],
+    [4.9, 3.1, 1.5, 0.2],
+    [5.0, 3.2, 1.2, 0.2],
+    [5.5, 3.5, 1.3, 0.2],
+    [4.9, 3.1, 1.5, 0.2],
+    [4.4, 3.0, 1.3, 0.2],
+    [5.1, 3.4, 1.5, 0.2],
+    [7.0, 3.2, 4.7, 0.2],
+    [6.4, 3.2, 4.5, 0.2],
+    [6.9, 3.1, 4.9, 0.2],
+    [5.5, 2.3, 4.0, 0.2],
+    [6.5, 2.8, 4.6, 0.2],
+    [5.7, 2.8, 4.5, 0.2],
+    [6.3, 3.3, 4.7, 0.2],
+    [4.9, 2.4, 3.3, 0.2],
+    [6.6, 2.9, 4.6, 0.2],
+    [5.2, 2.7, 3.9, 0.2],
+    [5.0, 2.0, 3.5, 0.2],
+    [5.9, 3.0, 4.2, 0.2],
+    [6.0, 2.2, 4.0, 0.2],
+    [6.1, 2.9, 4.7, 0.2],
+    [5.6, 2.9, 3.6, 0.2],
+    [6.7, 3.1, 4.4, 0.2],
+    [5.6, 3.0, 4.5, 0.2],
+    [5.8, 2.7, 4.1, 0.2],
+    [6.2, 2.2, 4.5, 0.2],
+    [5.6, 2.5, 3.9, 0.2],
+    [5.9, 3.2, 4.8, 0.2],
+    [6.1, 2.8, 4.0, 0.2],
+    [6.3, 2.5, 4.9, 0.2],
+    [6.1, 2.8, 4.7, 0.2],
+    [6.4, 2.9, 4.3, 0.2],
+    [6.6, 3.0, 4.4, 0.2],
+    [6.8, 2.8, 4.8, 0.2],
+    [6.7, 3.0, 5.0, 0.2],
+    [6.0, 2.9, 4.5, 0.2],
+    [5.7, 2.6, 3.5, 0.2],
+    [5.5, 2.4, 3.8, 0.2],
+    [5.5, 2.4, 3.7, 0.2],
+    [5.8, 2.7, 3.9, 0.2],
+    [6.0, 2.7, 5.1, 0.2],
+    [5.4, 3.0, 4.5, 0.2],
+    [6.0, 3.4, 4.5, 0.2],
+    [6.7, 3.1, 4.7, 0.2],
+    [6.3, 2.3, 4.4, 0.2],
+    [5.6, 3.0, 4.1, 0.2],
+    [5.5, 2.5, 4.0, 0.2]
+], dtype=float)
+
+y = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], dtype=int)
+
+#parameters
+learning_rate = 0.1
+epochs = 5
+
+bias = 0.5
+weights = np.array([0.5, 0.5, 0.5, 0.5], dtype=float)
+
+#sigmoid function
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+#training
+accuracy_history = []
+loss_history = []
+
+for epoch in range(epochs):
+
+    correct_predictions = 0
+    squared_errors = []
+
+    z_first = bias + np.dot(weights, X[0])
+    output_first = sigmoid(z_first)
+
+    bias_gradient = (
+        2
+        * (output_first - y[0])
+        * (1 - output_first)
+        * output_first
+    )
+
+    for i in range(len(X)):
+
+        z = bias + np.dot(weights, X[i])
+
+        output = sigmoid(z)
+
+        prediction = 1 if output > 0.5 else 0
+
+        error = output - y[i]
+
+        squared_errors.append(error ** 2)
+
+        if prediction == y[i]:
+            correct_predictions += 1
+
+        gradient = (
+            2
+            * error
+            * (1 - output)
+            * output
+        )
+
+        bias = bias - learning_rate * bias_gradient
+
+        weights = weights - learning_rate * gradient * X[i]
+
+    accuracy = correct_predictions / len(X)
+
+    loss = np.mean(squared_errors)
+
+    accuracy_history.append(accuracy * 100)
+    loss_history.append(loss)
+
+    print(f"epoch {epoch + 1}")
+    print(f"accuracy: {accuracy * 100:.2f}%")
+    print(f"loss: {loss:.10f}")
+    print(f"bias: {bias:.10f}")
+    print(f"weights: {weights}")
+    print("-" * 60)
+
+
+print("\nfinal training results")
+print("=" * 60)
+
+for epoch in range(epochs):
+    print(
+        f"epoch {epoch + 1}: "
+        f"accuracy = {accuracy_history[epoch]:.2f}%, "
+        f"loss = {loss_history[epoch]:.10f}"
+    )
+
+#accuracy chart
+epoch_numbers = range(1, epochs + 1)
+
+plt.figure(figsize=(8, 5))
+
+plt.plot(
+    epoch_numbers,
+    accuracy_history,
+    marker="o",
+    label="raining accuracy"
+)
+
+plt.xlabel("epoch")
+plt.ylabel("accuracy")
+plt.title("SLP training accuracy")
+plt.xticks(epoch_numbers)
+plt.ylim(0, 100)
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+#loss function chart
+plt.figure(figsize=(8, 5))
+
+plt.plot(
+    epoch_numbers,
+    loss_history,
+    marker="o",
+    label="training loss"
+)
+
+plt.xlabel("epoch")
+plt.ylabel("loss")
+plt.title("SLP training loss")
+plt.xticks(epoch_numbers)
+plt.grid(True)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
